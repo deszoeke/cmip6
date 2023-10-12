@@ -1,14 +1,15 @@
 # CMIP6 data
 
-I am writing a proposal to use CMIP6 model data. It's available at ESGF, but high volume, so deciding how to download and use it is optimally is tricky.
+I am writing a proposal to use CMIP6 model data. It's available at ESGF, but high volume, so deciding how to download and analyze it optimally is tricky.
 
 Here's an http download link:
 http://vesg.ipsl.upmc.fr/thredds/fileServer/cmip6/CMIP/IPSL/IPSL-CM6A-LR/historical/r2i1p1f1/Eday/zmla/gr/v20180803/zmla_Eday_IPSL-CM6A-LR_historical_r2i1p1f1_gr_19950101-20141231.nc
 
-Here's openDAP:
+Here's an OpenDAP:
 http://vesg.ipsl.upmc.fr/thredds/dodsC/cmip6/CMIP/IPSL/IPSL-CM6A-LR/historical/r2i1p1f1/Eday/zmla/gr/v20180803/zmla_Eday_IPSL-CM6A-LR_historical_r2i1p1f1_gr_19950101-20141231.nc.dods
+What works with NCDatasets is to use this one but cut off the `.dods`.
 
-I've never used globus, but I recall you recommended it. This the corresponding globus link. What do I do with it? Is there an API, or do globus members pipe it through their systems?
+This the corresponding globus link. What do I do with it? Is there an API, or do globus members pipe it through their systems?
 globus:ee351394-6ac7-11e7-a9c0-22000bf2d287/cmip6/CMIP/IPSL/IPSL-CM6A-LR/historical/r2i1p1f1/Eday/zmla/gr/v20180803/zmla_Eday_IPSL-CM6A-LR_historical_r2i1p1f1_gr_19950101-20141231.nc
 
 I learned there are also AWS S3S ways of accessing the data. But I can't find a minimum example that works for that.
