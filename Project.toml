@@ -1,3 +1,4 @@
 [deps]
+CDSAPI = "8a7b9de3-9c00-473e-88b4-7eccd7ef2fea"
 NCDatasets = "85f8d34a-cbdd-5861-8df4-14fed0d494ab"
 PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
