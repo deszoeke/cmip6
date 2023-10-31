@@ -1,4 +1,7 @@
 [deps]
 CDSAPI = "8a7b9de3-9c00-473e-88b4-7eccd7ef2fea"
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 NCDatasets = "85f8d34a-cbdd-5861-8df4-14fed0d494ab"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"

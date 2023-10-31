@@ -14,26 +14,27 @@ req = CDSAPI.py2ju("""
                          {
                              'product_type': 'reanalysis',
                              'format': 'netcdf',
-                             'area': [30, 40, -4, 90],
+                             'area': [10, 0, -10, 90],
                              'time': '00:00',
-                             'month': [ '05', '06' ],
+                             'month': [ '10', '11' ],
                              'day': [ '01', '02', '03', '04', '05', '06',
             			      '07', '08', '09', '10', '11', '12',
             			      '13', '14', '15', '16', '17', '18',
             			      '19', '20', '21', '22', '23', '24',
             			      '25', '26', '27', '28', '29', '30',
             			      '31',],
-                             'year': ['2018', '2019', '2020', '2021', '2022', '2023'],
+                             'year': ['2011'],
                              'variable': 'boundary_layer_height',
                          }
                          """)
-# r = CDSAPI.retrieve( "reanalysis-era5-single-levels", req , "era5_as_blh.nc" ) # saves data as .nc file
+#                         'year': ['2010','2011','2012','2013','2014','2015','2016','2017','2018', '2019', '2020', '2021', '2022', '2023'],
+r = CDSAPI.retrieve( "reanalysis-era5-single-levels", req , "ERA5-bl-blh-easteq.nc" ) # saves data as .nc file
 
 ##
 # plot data from local copy
-ds = NCDatasets.Dataset("era5_as_blh.nc")
+ds = NCDataset("ERA5-bl-blh-easteq.nc")
 
-# use cartopy to make plots
+# use cartopy to make plots # brittle--often fails
 ccrs = pyimport("cartopy.crs")
 feature = pyimport("cartopy.feature")
 
