@@ -9,7 +9,7 @@ c.retrieve('reanalysis-era5-complete', { # Requests follow MARS syntax
     'date'    : '2011-10-01/to/2011-11-30',            # The hyphens can be omitted
     'levelist': '119/to/137',          # 1 is top level, 137 the lowest model level in ERA5. Use '/' to separate values.
     'levtype' : 'ml',
-    'param'   : '3',                   # Full information at https://apps.ecmwf.int/codes/grib/param-db/
+    'param'   : '131/132',                   # Full information at https://apps.ecmwf.int/codes/grib/param-db/
                                          # The native representation for temperature is spherical harmonics
     'stream'  : 'oper',                  # Denotes ERA5. Ensemble members are selected by 'enda'
     'time'    : '00/to/23/by/6',         # You can drop :00:00 and use MARS short-hand notation, instead of '00/06/12/18'
@@ -17,7 +17,7 @@ c.retrieve('reanalysis-era5-complete', { # Requests follow MARS syntax
     'area'    : '10/-0/-10/180',          # North, West, South, East. Default: global
     'grid'    : '1.0/1.0',               # Latitude/longitude. Default: spherical harmonics or reduced Gaussian grid
     'format'  : 'netcdf',                # Output needs to be regular lat-lon, so only works in combination with 'grid'!
-}, 'ERA5-bl-th-easteq.nc')     # Output file. Adapt as you wish.
+}, 'ERA5-bl-uv-easteq.nc')     # Output file. Adapt as you wish.
 
 '''
 https://confluence.ecmwf.int/display/UDOC/L137+model+level+definitions
