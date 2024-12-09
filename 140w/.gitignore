@@ -3,3 +3,4 @@
 *.m~
 .DS_Store
 Manifest.toml
+__pycache__
