@@ -33,7 +33,7 @@ climo, lon = get_cmip6_lonclim(url, ctrlon=-140.0, width=2.0)
 return climatology lon section from an http zarray dataset
 """
 function get_cmip6_lonclim(url, ctrlon=-140.0, width=2.0)
-    store = Zarr.zopen(url)
+    store = Zarr.zopen(url) # this opens a Google Cloud Storage Zarray datastore
     
     # load lat and lon for subsetting
     lat = store["lat"][:]
@@ -59,17 +59,20 @@ end
 #x = mean(clt, dims=1)[1,:,:] # average over lon -> (lat, time)
 #clt_c = clim( x )
 
+# which CMIP6 models
 model_id = ["GFDL-ESM4", "E3SM1.1", "CESM-FV2"]
 urls = ["https://storage.googleapis.com/cmip6/CMIP6/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/Amon/clt/gr1/v20190726/",
         "https://storage.googleapis.com/cmip6/CMIP6/CMIP/E3SM-Project/E3SM-1-1/historical/r1i1p1f1/Amon/clt/gr/v20191211/",
         "https://storage.googleapis.com/cmip6/CMIP6/CMIP/NCAR/CESM2-FV2/historical/r1i1p1f1/Amon/clt/gn/v20191120/" ]
 
+# load cloud climatology data into clt_c Vector[model]{Vector[lat]}
 clt_c = Vector{Array}(undef, 3)
 lat   = Vector{Vector}(undef, 3)
 for i in eachindex(urls)
     clt_c[i], lat[i] = get_cmip6_lonclim(urls[i])
 end
 
+# visualize lat section for the models
 fig, axs= subplots(2,1)
 for i in eachindex(lat)
     axs[1].plot(lat[i], clt_c[i][:,10], label=model_id[i], marker=".")
