@@ -1,6 +1,17 @@
 using Pkg; Pkg.activate(".")
 
 using NCDatasets
+using PyPlot
+using Statistics
+using PyCall
+using PyCall: PyObject
+
+# allow for plotting with missing values
+function PyObject(a::Array{Union{T,Missing},N}) where {T,N}
+    numpy_ma = PyCall.pyimport("numpy").ma
+    pycall(numpy_ma.array, Any, coalesce.(a,zero(T)), mask=ismissing.(a))
+end
+
 # see also ZarrDatasets
 
 modisfile = joinpath("./data/modis", "MCD06COSP_M3_MODIS.clim.nc")
