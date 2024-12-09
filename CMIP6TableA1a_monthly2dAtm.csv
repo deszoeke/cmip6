@@ -1,0 +1,46 @@
+"Table A1a: Monthly-mean 2-d atmosphere or land surface data (longitude, latitude, time:month).",,,,
+,CF standard_name,output variable name,units,notes
+1,air_pressure_at_sea_level,psl,Pa,
+2,precipitation_flux,pr,kg m-2 s-1,includes both liquid and solid phases.
+3,air_temperature,tas,K,"near-surface (usually, 2 meter) air temperature; the CMOR singleton dimension default value of 2 m can be overridden, if absolutely necessary, by redefining axis ""height1""."
+4,moisture_content_of_soil_layer,mrsos,kg m-2,"water in all phases in the upper 0.1 meters of soil, and averaged over the land portion of the grid cell (i.e., compute by dividing the total mass of water contained in the soil layer of the grid cell by the land area in the grid cell); report as ""missing"" or 0.0 where the land fraction is 0;  the CMOR singleton dimension default value of 0.1 m can be overridden, if absolutely necessary, by redefining axis ""depth1""."
+5,soil_moisture_content,mrso,kg m-2,"water in all phases summed over all soil layers, and averaged over the land portion of the grid cell (i.e., compute by dividing the total mass of water contained in the soil layer of the grid cell by the land area in the grid cell); report as ""missing"" or 0.0 where the land fraction is 0."
+6,surface_downward_eastward_stress,tauu,Pa,
+7,surface_downward_northward_stress,tauv,Pa,
+8,surface_snow_thickness,snd,m,"this thickness when multiplied by the average area of the grid cell covered by snow yields the time-mean snow volume.  Thus, for time means, compute as the weighted sum of thickness (averaged over the snow-covered portion of the grid cell) divided by the sum of the weights, with the weights equal to the area covered by snow.  report as 0.0 in snow-free regions."
+9,surface_upward_latent_heat_flux,hfls,W m-2,
+10,surface_upward_sensible_heat_flux,hfss,W m-2,
+11,surface_downwelling_longwave_flux_in_air,rlds,W m-2,
+12,surface_upwelling_longwave_flux_in_air,rlus,W m-2,
+13,surface_downwelling_shortwave_flux_in_air,rsds,W m-2,
+14,surface_upwelling_shortwave_flux_in_air,rsus,W m-2,
+15,surface_temperature,ts,K,"""skin"" temperature (i.e., SST for open ocean)"
+16,surface_air_pressure,ps,Pa,not mean sea-level pressure
+17,snowfall_flux,prsn,kg m-2 s-1,
+18,convective_precipitation_flux,prc,kg m-2 s-1,
+19,atmosphere_water_vapor_content,prw,kg m-2,vertically integrated through the atmospheric column
+20,soil_frozen_water_content,mrfso,kg m-2,"summed over all soil layers, and averaged over the land portion of the grid cell (i.e., compute by dividing the total mass of frozen water contained in the soil layer of the grid cell by the land area in the grid cell); report as ""missing"" or 0.0 where the land fraction is 0."
+21,surface_runoff_flux,mrros,kg m-2 s-1,"compute as the total surface runoff leaving the land portion of the grid cell divided by the land area in the grid cell; report as ""missing"" or 0.0 where the land fraction is 0."
+22,runoff_flux,mrro,kg m-2 s-1,"compute as the total runoff (including ""drainage"" through the base of the soil model) leaving the land portion of the grid cell divided by the land area in the grid cell; report as ""missing"" or 0.0 where the land fraction is 0."
+23,surface_snow_amount_where_land,snw,kg m-2,"compute as the mass of surface snow on the land portion of the grid cell divided by the land area in the grid cell; report as ""missing"" or 0.0 where the land fraction is 0; exclude snow on vegetation canopy or on sea ice."
+24,surface_snow_area_fraction_where_land,snc,%,fraction of grid cell covered by snow that lies on land; exclude snow that lies on sea ice.
+25,surface_snow_melt_flux_where_land,snm,kg m-2 s-1,"compute as the total surface melt water on the land portion of the grid cell divided by the land area in the grid cell; report as 0.0 for snow-free land regions; report as 0.0 or ""missing"" where the land fraction is 0."
+26,eastward_wind,uas,m s-1,"near-surface (usually, 10 meters) eastward component of wind; the CMOR singleton dimension default value of 10 m can be overridden, if absolutely necessary, by redefining axis ""height2""."
+27,northward_wind,vas,m s-1,"near-surface (usually, 10 meters) northward component of wind; the CMOR singleton dimension default value of 10 m can be overridden, if absolutely necessary, by redefining axis ""height2""."
+28,specific_humidity,huss,"1 (i.e., dimensionless fraction)","near-surface (usually, 2meters) specific humidity; the CMOR singleton dimension default value of 2 m can be overridden, if absolutely necessary, by redefining axis ""height1""."
+29,toa_incoming_shortwave_flux,rsdt,W m-2,incident shortwave at the top of the atmosphere
+30,toa_outgoing_shortwave_flux,rsut,W m-2,at the top of the atmosphere
+31,toa_outgoing_longwave_flux,rlut,W m-2,at the top of the atmosphere (to be compared with satellite measurements)
+32,net_downward_radiative_flux_at_top_of_atmosphere_model,rtmt,W m-2,"i.e., at the top of that portion of the atmosphere where dynamics are explicitly treated by the model."
+33,net_downward_shortwave_flux_in_air,rsntp,W m-2,"at 200 hPa only; the CMOR singleton dimension default value of 200 hPa can be overridden, if absolutely necessary, by redefining axis ""pressure1""."
+34,net_upward_longwave_flux_in_air,rlntp,W m-2,"at 200 hPa only; the CMOR singleton dimension default value of 200 hPa can be overridden, if absolutely necessary, by redefining axis ""pressure1""."
+35,net_downward_shortwave_flux_in_air_assuming_clear_sky,rsntpcs,W m-2,"at 200 hPa only; method ""2"" is recommended for calculating clear-sky fluxes; the CMOR singleton dimension default value of 200 hPa can be overridden, if absolutely necessary, by redefining axis ""pressure1""."
+36,net_upward_longwave_flux_in_air_assuming_clear_sky,rlntpcs,W m-2,"at 200 hPa only; method ""2"" is recommended for calculating clear-sky fluxes; the CMOR singleton dimension default value of 200 hPa can be overridden, if absolutely necessary, by redefining axis ""pressure1""."
+37,surface_downwelling_shortwave_flux_in_air_assuming_clear_sky,rsdscs,W m-2,"method ""2"" is recommended for calculating clear-sky fluxes"
+38,surface_upwelling_shortwave_flux_in_air_assuming_clear_sky,rsuscs,W m-2,"method ""2"" is recommended for calculating clear-sky fluxes"
+39,surface_downwelling_longwave_flux_in_air_assuming_clear_sky,rldscs,W m-2,"method ""2"" is recommended for calculating clear-sky fluxes"
+40,toa_outgoing_longwave_flux_assuming_clear_sky,rlutcs,W m-2,"method ""2"" is recommended for calculating clear-sky fluxes"
+41,toa_outgoing_shortwave_flux_assuming_clear_sky,rsutcs,W m-2,"method ""2"" is recommended for calculating clear-sky fluxes"
+42,cloud_area_fraction,clt,%,"for the whole atmospheric column, as seen from the surface or the top of the atmosphere. Include both large-scale and convective cloud."
+43,atmosphere_cloud_condensed_water_content,clwvi,kg m-2,"include both liquid and ice phases, consider all the mass of condensed water in the column and divide by its area (in the longitude-latitude plane)"
+44,atmosphere_cloud_ice_content,clivi,kg m-2,consider all the mass of ice-phase water in the column and divide by its area (in the longitude-latitude plane)
