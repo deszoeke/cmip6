@@ -2,3 +2,4 @@
 *.svg
 *.m~
 .DS_Store
+Manifest.toml
