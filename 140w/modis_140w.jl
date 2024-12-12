@@ -38,6 +38,7 @@ cllo, _  = modis_sect(cf_vars[2])
 clmd, _  = modis_sect(cf_vars[3])
 clhi, _  = modis_sect(cf_vars[4])
 
+# stacked area plot of Oct and Apr clouds
 stack(m) = [cllo[:,m], clmd[:,m], clhi[:,m]]
 
 fig, axs = subplots(2,1)
@@ -53,6 +54,40 @@ end
 axs[2].set_xlabel("degrees latitiude")
 tight_layout()
 
-savefig("modis_140w.png")
-savefig("modis_140w.svg")
+savefig("modis_cldstack_140w.png")
+savefig("modis_cldstack_140w.svg")
 
+"plot the latitude-seasonal cycle"
+function seas_lat(lat, tcc_clim, lcc_clim, mcc_clim, hcc_clim;
+		  fig=gcf(), tlevs=0.25:0.05:0.85, hlevs=0:0.1:1, llevs=0.16:0.02:0.44, mlevs=hlevs )
+	
+	mm = @. mod(0:17, 12) + 1
+
+	figure( fig ) # uses the current figure, or the figure passed by keyword
+	ax1 = subplot(2,1,1)
+	contourf(1:18, lat, tcc_clim[:,mm], levels=tlevs, cmap=ColorMap("bone"))
+	colorbar()
+	contour(1:18, lat, hcc_clim[:,mm], colors="w", levels=hlevs, linewidths=0.5)
+	contour(1:18, lat, hcc_clim[:,mm], colors="w", levels=[0.3], linewidths=1.3)
+	xticks(1:3:18, ["Jan","Apr","July","Oct","Jan","Apr"])
+	title("cloud fraction climatology")
+	ylabel("latitude")
+
+	ax2 = subplot(2,1,2)
+	contourf(1:18, lat, lcc_clim[:,mm], levels=llevs, cmap=ColorMap("bone"))
+	colorbar()
+	contour(1:18, lat, mcc_clim[:,mm], colors="w", levels=mlevs, linewidths=0.5)
+	contour(1:18, lat, mcc_clim[:,mm], colors="w", levels=[0.3], linewidths=1.3)
+	xticks(1:3:18, ["Jan","Apr","July","Oct","Jan","Apr"])
+	ylabel("latitude")
+
+	return gcf(), [ax1, ax2]
+end
+
+fig = gcf()
+clf()
+fig, axs = seas_lat( lat, clt, cllo, clmd, clhi )
+axs[1].set_title("MODIS cloud fraction climatology")
+figure(fig)		    
+savefig("modis_seasonal_cld.png")
+savefig("modis_seasonal_cld.svg")

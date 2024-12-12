@@ -1,7 +1,15 @@
+using Pkg; Pkg.activate(".")
+
 using NCDatasets
 using Dates
 using Statistics
 using PyPlot
+
+# allow for plotting with missing values
+function PyObject(a::Array{Union{T,Missing},N}) where {T,N}
+    numpy_ma = PyCall.pyimport("numpy").ma
+    pycall(numpy_ma.array, Any, coalesce.(a,zero(T)), mask=ismissing.(a))
+end
 
 datapath = expanduser("~/data/era5/cloud")
 ds = NCDataset(joinpath(datapath, "era5_cloud_m.nc"))
@@ -45,6 +53,8 @@ hcc_clim = meanbin( xtract("hcc"), mon, dim=2 )
 mcc_clim = meanbin( xtract("mcc"), mon, dim=2 )
 lcc_clim = meanbin( xtract("lcc"), mon, dim=2 )
 
+# do with function...
+#=
 mm = @. mod(0:17, 12)+1
 clf()
 subplot(2,1,1)
@@ -68,7 +78,41 @@ contour(1:18, lat[filat], mcc_clim[:,mm], colors="w", levels=0:0.1:1, linewidths
 contour(1:18, lat[filat], mcc_clim[:,mm], colors="w", levels=[0.3], linewidths=1.3)
 xticks(1:3:18, ["Jan","Apr","July","Oct","Jan","Apr"])
 ylabel("latitude")
+=#
 
+"plot the latitude-seasonal cycle"
+function seas_lat(lat, tcc_clim, lcc_clim, mcc_clim, hcc_clim;
+                  fig=gcf(), tlevs=0.25:0.05:0.85, hlevs=0:0.1:1, llevs=0.16:0.02:0.44, mlevs=hlevs )
+
+        mm = @. mod(0:17, 12) + 1
+
+        figure( fig ) # uses the current figure, or the figure passed by keyword
+        ax1 = subplot(2,1,1)
+        contourf(1:18, lat, tcc_clim[:,mm], levels=tlevs, cmap=ColorMap("bone"))
+        colorbar()
+        contour(1:18, lat, hcc_clim[:,mm], colors="w", levels=hlevs, linewidths=0.5)
+        contour(1:18, lat, hcc_clim[:,mm], colors="w", levels=[0.3], linewidths=1.3)
+        xticks(1:3:18, ["Jan","Apr","July","Oct","Jan","Apr"])
+        title("cloud fraction climatology")
+        ylabel("latitude")
+
+        ax2 = subplot(2,1,2)
+        contourf(1:18, lat, lcc_clim[:,mm], levels=llevs, cmap=ColorMap("bone"))
+        colorbar()
+        contour(1:18, lat, mcc_clim[:,mm], colors="w", levels=mlevs, linewidths=0.5)
+        contour(1:18, lat, mcc_clim[:,mm], colors="w", levels=[0.3], linewidths=1.3)
+        xticks(1:3:18, ["Jan","Apr","July","Oct","Jan","Apr"])
+        ylabel("latitude")
+
+        return gcf(), [ax1, ax2]
+end
+
+fig = gcf()
+clf()
+fig, axs = seas_lat( lat[filat], tcc_clim, lcc_clim, mcc_clim, hcc_clim )
+axs[1].set_title("ERA5 cloud fraction climatology")
+tight_layout()
+figure(fig)
 savefig("era5_cloud.png")
 savefig("era5_cloud.svg")
 
