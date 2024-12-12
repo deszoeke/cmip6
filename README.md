@@ -1,4 +1,6 @@
-# CMIP6 data
+# Analysis of CMIP6 and ERA5 data
+
+## for proposals, with a preference for monthly data and climatologies
 
 I am writing a proposal to use CMIP6 model data. It's available at ESGF, but high volume, so deciding how to download and analyze it optimally is tricky.
 

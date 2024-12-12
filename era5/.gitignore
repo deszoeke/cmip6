@@ -1,1 +1,6 @@
 data/
+data
+*.png
+*.svg
+*.swp
+Manifest.toml

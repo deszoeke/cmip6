@@ -5,3 +5,4 @@
 Manifest.toml
 __pycache__
 data/
+*.swp
